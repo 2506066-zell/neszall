@@ -1,9 +1,14 @@
+const BASE = (() => {
+  const parts = location.pathname.split('/').filter(Boolean);
+  if (location.hostname.endsWith('github.io') && parts.length) return `/${parts[0]}/`;
+  return '/';
+})();
 function requireAuth() {
   const t = localStorage.getItem('token');
-  if (!t) location.href = '/login.html';
+  if (!t) location.href = BASE + 'login.html';
 }
 function registerSW() {
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js', { scope: BASE });
 }
 function loadTheme() {
   const t = localStorage.getItem('theme') || 'dark';
@@ -92,7 +97,7 @@ function startHeroTimer() {
 }
 export function logout() {
   localStorage.removeItem('token');
-  location.href = '/login.html';
+  location.href = BASE + 'login.html';
 }
 
 // Global listener for Demo Mode

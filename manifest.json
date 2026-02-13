@@ -1,8 +1,8 @@
 {
   "name": "NZ",
   "short_name": "NZ",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0f1220",
   "theme_color": "#a1b5ff",
